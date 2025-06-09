@@ -93,48 +93,45 @@ const Home = () => {
       <div className="absolute top-20 left-10 w-24 h-24 border border-indigo-300 dark:border-hacker-primary/30 rounded-lg opacity-40 dark:opacity-20 pointer-events-none"></div>
       <div className="absolute bottom-40 right-10 w-32 h-32 border-2 border-dashed border-indigo-200 dark:border-hacker-primary/20 rounded-full opacity-30 dark:opacity-10 animate-spin pointer-events-none" style={{animationDuration: '30s'}}></div>
       <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-indigo-400 dark:bg-hacker-accent rounded-full opacity-40 animate-ping-signal pointer-events-none" style={{animationDuration: '4s'}}></div>
-      
-      <div className="w-full max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Main identity terminal */}
+        <div className="w-full max-w-7xl mx-auto px-2 space-y-6">        {/* IDENTITY.SYS - Full width */}
         <motion.div 
           variants={itemVariants}
-          className="lg:col-span-2 terminal-card flex flex-col justify-center relative overflow-hidden"
+          className="terminal-card flex flex-col justify-center relative overflow-hidden w-full min-h-[380px] bg-opacity-95 backdrop-blur-sm"
         >
           {/* Terminal scanline effect */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="w-full h-2 bg-hacker-primary/10 dark:bg-hacker-primary/20 absolute animate-scan-fast"></div>
           </div>
           
-          <div className="terminal-header">
+          <div className="terminal-header border-b border-gray-200 dark:border-hacker-primary/30 pb-2">
             <div className="flex items-center">
-              <span className="h-3 w-3 rounded-full bg-red-500 mx-1 animate-pulse"></span>
-              <span className="h-3 w-3 rounded-full bg-yellow-500 mx-1"></span>
-              <span className="h-3 w-3 rounded-full bg-green-500 mx-1"></span>
-              <span className="terminal-title ml-2">IDENTITY.SYS</span>
+              <div className="flex space-x-2 mr-3">
+                <span className="h-3 w-3 rounded-full bg-red-500 animate-pulse"></span>
+                <span className="h-3 w-3 rounded-full bg-yellow-500"></span>
+                <span className="h-3 w-3 rounded-full bg-green-500"></span>
+              </div>
+              <span className="terminal-title text-lg font-bold">IDENTITY.SYS</span>
             </div>
-            <span className="text-gray-400 dark:text-hacker-primary/70 font-mono">{terminalDate} | {terminalTime}</span>
-          </div>
-          
-          <div className="p-6 relative">
+            <span className="text-gray-400 dark:text-hacker-primary/70 font-mono text-sm">{terminalDate} | {terminalTime}</span>
+          </div>            <div className="px-3 py-4 relative">
             {/* System loading/boot animation */}
-            <div className="mb-4 flex flex-wrap gap-2">
+            <div className="mb-4 flex flex-wrap gap-3 justify-center">
               {activeStats.map((stat, index) => (
                 <motion.div 
                   key={stat.name}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="px-3 py-1 bg-gray-100 dark:bg-black/30 rounded-md border border-gray-200 dark:border-hacker-primary/30 text-xs font-mono flex items-center"
+                  className="px-4 py-1.5 bg-gray-100 dark:bg-black/30 rounded-md border border-gray-200 dark:border-hacker-primary/30 text-sm font-mono flex items-center shadow-sm"
                 >
                   <span className="text-gray-500 dark:text-hacker-primary/50 mr-1">{stat.name}:</span>
                   <span className="text-indigo-600 dark:text-hacker-accent">{stat.value}</span>
                 </motion.div>
               ))}
             </div>
-            
-            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-hacker-primary sm:text-5xl md:text-6xl">
+              <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-hacker-primary sm:text-5xl md:text-6xl text-center">
               <motion.span 
-                className="block dark:font-mono dark:border-b dark:border-hacker-primary/30 dark:pb-2 dark:inline-block"
+                className="block dark:font-mono dark:border-b dark:border-hacker-primary/30 dark:pb-2 dark:inline-block max-w-[73rem] mx-auto"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
@@ -169,11 +166,10 @@ const Home = () => {
               </motion.span>
             </h1>
           </div>
-          
-          <div className="p-6 border-t border-gray-200 dark:border-hacker-primary/30">
+            <div className="px-8 py-6 border-t border-gray-200 dark:border-hacker-primary/30">
             <motion.div
               variants={itemVariants}
-              className="mt-2 text-lg text-gray-600 dark:text-hacker-primary/90 max-w-3xl mx-auto dark:p-4 dark:border dark:border-hacker-primary/30 dark:bg-black/40 dark:backdrop-blur-sm rounded-md dark:font-mono"
+              className="text-lg text-gray-600 dark:text-hacker-primary/90 max-w-6xl mx-auto dark:p-4 dark:border dark:border-hacker-primary/30 dark:bg-black/40 dark:backdrop-blur-sm rounded-md dark:font-mono"
             >
               <span className="dark:text-hacker-secondary dark:mr-2 dark:font-mono">{">"}</span>
               {personalInfo.summary}
@@ -281,9 +277,9 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Right side panels */}
-        <div className="lg:col-span-1 flex flex-col gap-6">
-          {/* Skills and Tools terminal */}
+        {/* Three Column Layout - SKILLS.TXT, STATUS.SYS, CERTIFICATIONS */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* SKILLS.TXT */}
           <motion.div
             variants={itemVariants}
             whileHover="hover"
@@ -369,7 +365,7 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Status Box */}
+          {/* STATUS.SYS */}
           <motion.div
             variants={itemVariants}
             whileHover="hover"
@@ -413,11 +409,11 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Certifications Box */}
+          {/* CERTIFICATIONS */}
           <motion.div
             variants={itemVariants}
             whileHover="hover"
-            className="terminal-card p-4 hidden lg:block"
+            className="terminal-card p-4 block"
           >
             <div className="terminal-header">
               <span className="terminal-title">CERTIFICATIONS</span>
@@ -440,16 +436,16 @@ const Home = () => {
             </div>
           </motion.div>
         </div>
-        
-        {/* Additional highlighted features - full width */}
-        <motion.div 
-          variants={itemVariants}
-          className="col-span-1 lg:col-span-3 mt-6"
-        >
-          <h2 className="text-xl font-bold text-center mb-6 text-gray-800 dark:text-hacker-primary dark:font-mono">
+
+        {/* Key Features & Specializations */}
+        <div className="space-y-6">
+          <h2 className="text-xl font-bold text-center text-gray-800 dark:text-hacker-primary dark:font-mono">
             <span className="animate-cursor-blink">{">"}</span> Key Features & Specializations
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+          {/* Four Column Layout for Features */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Modern Web Apps */}
             <motion.div 
               whileHover={{scale: 1.03, boxShadow: "0 10px 25px rgba(0, 255, 0, 0.1)"}}
               className="terminal-card p-4 transition-all"
@@ -464,21 +460,24 @@ const Home = () => {
                 </p>
               </div>
             </motion.div>
+
+            {/* Optimized Performance */}
             <motion.div 
               whileHover={{scale: 1.03, boxShadow: "0 10px 25px rgba(0, 255, 0, 0.1)"}}
-              className="terminal-card p-4 transition-all relative overflow-hidden"
+              className="terminal-card p-4 transition-all"
             >
-              <div className="absolute right-0 top-0 w-24 h-24 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 dark:from-hacker-accent/5 dark:to-hacker-primary/5 rounded-bl-full"></div>
               <div className="flex flex-col items-center">
                 <div className="h-12 w-12 rounded-full bg-indigo-100 dark:bg-black/50 flex items-center justify-center mb-4 border border-indigo-200 dark:border-hacker-primary/30">
                   <FaRocket className="h-6 w-6 text-indigo-600 dark:text-hacker-accent" />
                 </div>
                 <h3 className="font-bold text-lg text-gray-900 dark:text-hacker-primary">Optimized Performance</h3>
                 <p className="text-center text-gray-600 dark:text-hacker-primary/70 text-sm mt-2">
-                  Creating lightning-fast experiences with optimized code and efficient algorithms.
+                  Creating lightning-fast experiences with optimized code.
                 </p>
               </div>
             </motion.div>
+
+            {/* Responsive Design */}
             <motion.div 
               whileHover={{scale: 1.03, boxShadow: "0 10px 25px rgba(0, 255, 0, 0.1)"}}
               className="terminal-card p-4 transition-all"
@@ -489,12 +488,28 @@ const Home = () => {
                 </div>
                 <h3 className="font-bold text-lg text-gray-900 dark:text-hacker-primary">Responsive Design</h3>
                 <p className="text-center text-gray-600 dark:text-hacker-primary/70 text-sm mt-2">
-                  Crafting beautiful interfaces that work flawlessly on all devices.
+                  Crafting beautiful interfaces that work on all devices.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* etc... */}
+            <motion.div 
+              whileHover={{scale: 1.03, boxShadow: "0 10px 25px rgba(0, 255, 0, 0.1)"}}
+              className="terminal-card p-4 transition-all"
+            >
+              <div className="flex flex-col items-center">
+                <div className="h-12 w-12 rounded-full bg-indigo-100 dark:bg-black/50 flex items-center justify-center mb-4 border border-indigo-200 dark:border-hacker-primary/30">
+                  <FaCode className="h-6 w-6 text-indigo-600 dark:text-hacker-accent" />
+                </div>
+                <h3 className="font-bold text-lg text-gray-900 dark:text-hacker-primary">etc..</h3>
+                <p className="text-center text-gray-600 dark:text-hacker-primary/70 text-sm mt-2">
+                  More features and capabilities coming soon...
                 </p>
               </div>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       </div>
       
       {/* Terminal decoration */}
