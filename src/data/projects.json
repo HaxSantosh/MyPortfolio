@@ -1,0 +1,31 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-commerce Platform",
+      "description": "A full-stack e-commerce project utilizing Asp.NET Core MVC, Identity, Entity Framework, SQL Server, and JavaScript. Implemented user authentication, product management, and order processing.",
+      "technologies": ["ASP.NET Core", "Entity Framework", "SQL Server", "JavaScript"],
+      "image": "/projects/ecommerce.jpg",
+      "github": "https://github.com/HaxSantosh/ecommerce-platform",
+      "live": null
+    },
+    {
+      "id": 2,
+      "title": "Microsoft DICE Features",
+      "description": "Enhanced React JS applications with features like recent search functionality, accessibility improvements, and dynamic UI elements.",
+      "technologies": ["React", "Redux", "React-Query", "Azure DevOps"],
+      "image": "/projects/microsoft-dice.jpg",
+      "github": null,
+      "live": null
+    },
+    {
+      "id": 3,
+      "title": "BP Shipping Database Management",
+      "description": "Developed and maintained database management systems for vetting and clearance teams using ASP.NET WebAPI and SQL Server.",
+      "technologies": ["ASP.NET WebAPI", "Entity Framework", "SQL Server", "Git"],
+      "image": "/projects/bp-shipping.jpg",
+      "github": null,
+      "live": null
+    }
+  ]
+}

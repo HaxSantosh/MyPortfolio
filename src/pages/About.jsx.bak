@@ -1,0 +1,140 @@
+import React from 'react';
+import { motion } from 'framer-motion';<ul className="mt-4 space-y-2">
+                  {exp.responsibilities.map((resp, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="mr-2 text-indigo-500 dark:text-hacker-primary font-mono">{">"}</span>
+                      <span className="text-gray-600 dark:text-hacker-primary/80">{resp}</span>
+                    </li>
+                  ))}
+                </ul>ort { experience, skills } from '../data/personalInfo';
+
+const About = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.3 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  return (    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="w-full bg-gray-50 dark:bg-black/20 backdrop-blur-sm"
+    >
+      <div className="w-full terminal-card mx-auto max-w-7xl mt-4">
+        <div className="terminal-header">
+          <span className="terminal-title">PROFILE.DATA</span>
+          <span className="text-gray-400 dark:text-hacker-primary/70">ACCESS: GRANTED</span>
+        </div>
+        
+        <motion.h2 
+          variants={itemVariants}
+          className="text-3xl font-bold text-gray-900 dark:text-hacker-primary text-center mb-12"
+        >
+          Professional Journey
+        </motion.h2>
+        
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-indigo-200 dark:bg-hacker-primary/30" />
+          
+          {/* Experience items */}
+          {experience.map((exp, index) => (
+            <motion.div
+              key={exp.company}
+              variants={itemVariants}
+              className={`relative mb-16 ${
+                index % 2 === 0 ? 'md:pr-1/2' : 'md:pl-1/2 md:ml-auto'
+              }`}
+            >              <div className={`bg-white dark:bg-black/60 rounded-lg shadow-lg p-6 relative 
+                dark:border dark:border-hacker-primary/50 dark:backdrop-blur-sm
+                ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
+                <div className={`absolute top-6 w-4 h-4 rounded-full bg-indigo-500 dark:bg-hacker-primary dark:glow transform -translate-y-1/2
+                  ${index % 2 === 0 ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'}`} />
+                <div className="dark:border-b dark:border-hacker-primary/30 dark:pb-2 dark:mb-3">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-hacker-primary">{exp.company}</h3>
+                  <h4 className="text-lg text-indigo-600 dark:text-hacker-accent">{exp.position}</h4>
+                  <p className="text-sm text-gray-500 dark:text-hacker-primary/70 mt-1 dark:font-mono">{exp.duration}</p>
+                </div>
+                <p className="mt-2 text-gray-600 dark:text-hacker-primary/90">{exp.description}</p>
+                <ul className="mt-4 space-y-2">
+                  {exp.responsibilities.map((resp, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="text-indigo-500 dark:text-indigo-400 mr-2">•</span>
+                      <span className="text-gray-600 dark:text-gray-300">{resp}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Skills Section */}
+        <motion.div variants={itemVariants} className="mt-20">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-12">Skills & Expertise</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Technical Skills */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Technical Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.technical.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 rounded-full text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Soft Skills */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Soft Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.soft.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded-full text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Additional Skills */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Additional Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.additional.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default About;

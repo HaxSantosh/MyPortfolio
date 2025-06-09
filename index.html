@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="description" content="Portfolio of Santosh Kumar Yadav, a software developer experienced in .NET Core WebAPI, React JS, and modern web development." />
+    <meta name="keywords" content="software developer, web developer, react, .net core, portfolio" />
+    <meta name="author" content="Santosh Kumar Yadav" />
+    
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+      rel="stylesheet"
+    />
+    
+    <title>Santosh Kumar Yadav - Software Developer Portfolio</title>
+    
+    <!-- Initial theme setup to prevent flash -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          // Default to dark mode if no preference is saved
+          const isDark = savedTheme ? savedTheme === 'dark' : true;
+          document.documentElement.classList.toggle('dark', isDark);
+        } catch (e) {
+          // If localStorage is not available, default to dark mode
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 20px; text-align: center;">
+        Please enable JavaScript to view this website.
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

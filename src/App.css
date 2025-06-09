@@ -1,0 +1,628 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Performance optimization for all animations */
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware acceleration for all animated elements */
+.animate-anything,
+.animate-ping-signal,
+.animate-cursor-blink,
+.animate-trail-fade,
+.animate-glow-pulse,
+.animate-data-transfer,
+.animate-cyber-float,
+.animate-vibrate,
+.animate-holo-reveal,
+.animate-matrix-rain,
+.cyber-cursor,
+.cyber-cursor-dot,
+.cyber-cursor-ring,
+.cyber-cursor-line,
+.terminal-card,
+.signal-node,
+.circuit-path {
+  transform: translateZ(0); /* Hardware acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+  
+  /* Super smooth transitions for cyberpunk feel */
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Show default cursor and enhance with effects */
+body {
+  cursor: default;
+}
+
+a, 
+button, 
+input[type="submit"],
+[role="button"],
+.cursor-pointer {
+  cursor: pointer;
+}
+
+input, 
+textarea, 
+select {
+  cursor: text;
+}
+
+/* Dark mode */
+.dark {
+  color-scheme: dark;
+}
+
+/* PDF viewer in dark mode */
+.dark iframe {
+  filter: invert(90%) hue-rotate(180deg);
+}
+
+/* Custom scrollbar - thinner for performance */
+::-webkit-scrollbar {
+  width: 0.35rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 0, 0.3);
+  border-radius: 0.25rem;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 0, 0.7);
+}
+
+/* Animation classes - optimized for performance */
+@keyframes ping-signal {
+  0% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes trail-fade {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* More impressive, faster animations */
+@keyframes glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(0, 255, 0, 0.8)) 
+            drop-shadow(0 0 8px rgba(0, 255, 0, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgba(0, 255, 0, 1.0)) 
+            drop-shadow(0 0 18px rgba(0, 255, 0, 0.8));
+  }
+}
+
+@keyframes scan-fast {
+  0% {
+    top: -5%;
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    top: 105%;
+    opacity: 0.1;
+  }
+}
+
+@keyframes flicker-text {
+  0%, 100% {
+    opacity: 1;
+  }
+  8%, 10% {
+    opacity: 0.6;
+  }
+  9% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 0.9;
+  }
+  42% {
+    opacity: 0.5;
+  }
+  43% {
+    opacity: 0.85;
+  }
+}
+
+/* New cyber animations */
+@keyframes data-transfer {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0.8;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes cyber-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes vibrate {
+  0%, 100% { 
+    transform: translateX(0); 
+  }
+  10%, 30%, 50%, 70%, 90% { 
+    transform: translateX(-2px); 
+  }
+  20%, 40%, 60%, 80% { 
+    transform: translateX(2px); 
+  }
+}
+
+@keyframes holo-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes matrix-rain {
+  0% {
+    top: -10%;
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0.3;
+  }
+}
+
+@keyframes signal-ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4);
+    background-color: rgba(0, 255, 0, 0.8);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+    background-color: rgba(0, 255, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+    background-color: rgba(0, 255, 0, 0.8);
+  }
+}
+
+@keyframes circuit-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-ping-signal {
+  animation: ping-signal 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s ease-in-out infinite;
+}
+
+.animate-trail-fade {
+  animation: trail-fade 0.3s linear forwards;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-scan-fast {
+  animation: scan-fast 3s linear infinite;
+}
+
+.animate-flicker-text {
+  animation: flicker-text 5s ease-in-out infinite;
+}
+
+.animate-data-transfer {
+  animation: data-transfer 1.5s linear forwards;
+}
+
+.animate-cyber-float {
+  animation: cyber-float 3s ease-in-out infinite;
+}
+
+.animate-vibrate {
+  animation: vibrate 0.3s linear;
+}
+
+.animate-vibrate-hover:hover {
+  animation: vibrate 0.3s linear;
+}
+
+.animate-holo-reveal {
+  animation: holo-reveal 0.5s ease-out forwards;
+}
+
+.animate-matrix-rain {
+  animation: matrix-rain 8s linear infinite;
+}
+
+.animate-signal-ping {
+  animation: signal-ping 3s infinite;
+}
+
+/* Galaxy background effects */
+@keyframes twinkle {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+@keyframes cosmic-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+@keyframes galaxy-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+.animate-cosmic-pulse {
+  animation: cosmic-pulse 8s infinite ease-in-out;
+}
+
+.galaxy-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.galaxy-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, 
+              rgba(0, 255, 255, 0.1) 0%, 
+              rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Enhanced hardware acceleration for cosmic elements */
+.star-element,
+.galaxy-element,
+.nebula-element {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Ensure the cyber cursor stays on top */
+.cyber-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform-style: preserve-3d;
+  /* Ensure system cursor always visible */
+  cursor: inherit !important;
+}
+
+.cyber-cursor * {
+  pointer-events: none !important;
+  cursor: inherit !important;
+}
+
+/* Optimize transitions to prioritize position updates */
+.cyber-cursobror-dot {
+  transition-property: transform, width, height;
+  transition-duration: 0.08s;
+  transition-timing-function: ease-out;
+  /* No transition on position for immediate position updates */
+}
+
+.cyber-cursor-ring {
+  transition-property: width, height, opacity;
+  transition-duration: 0.12s;
+  transition-timing-function: ease-out;
+  /* No transition on position for immediate position updates */
+}
+
+/* Hide the cursor completely on mobile devices */
+@media (max-width: 768px) {
+  .cyber-cursor, 
+  .cyber-cursor-dot, 
+  .cyber-cursor-ring, 
+  .cyber-cursor-line {
+    display: none !important;
+  }
+  
+  body, a, button, input {
+    cursor: auto !important;
+  }
+}
+
+/* Layout */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Super-imposed animation elements */
+.cyber-circuit {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: screen;
+  z-index: 5;
+}
+
+.dark .cyber-circuit {
+  opacity: 0.15;
+}
+
+/* Add glitch effect for text elements */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch-text::before {
+  color: #0ff;
+  animation: glitch-before 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  color: #f0f;
+  animation: glitch-after 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-before {
+  0% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+    opacity: 0;
+  }
+  2% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-2px, 2px);
+    opacity: 0.2;
+  }
+  4%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-after {
+  0% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+    opacity: 0;
+  }
+  1% {
+    clip-path: inset(40% 0 60% 0);
+    transform: translate(2px, -2px);
+    opacity: 0.2;
+  }
+  3%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+/* Terminal Card styling enhancements */
+.terminal-card {
+  position: relative;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .terminal-card {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
+}
+
+.terminal-card:hover {
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.dark .terminal-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 255, 0, 0.15);
+  border: 1px solid rgba(0, 255, 0, 0.4);
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .terminal-header {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.terminal-title {
+  font-family: monospace;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.dark .terminal-title {
+  color: #00FF00;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* Cyber sensor dots */
+.cyber-sensor {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 255, 0, 0.8);
+  animation: circuit-glow 2s infinite;
+}
+
+/* Enhanced cyberpunk text */
+.cyber-text {
+  font-family: monospace;
+  color: #00ff00;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+  position: relative;
+}
+
+.cyber-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00ff00, transparent);
+}
+
+/* Custom cyberpunk input and button styles */
+input:focus, textarea:focus, select:focus, button:focus {
+  box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.2), 0 0 10px rgba(0, 255, 0, 0.3) !important;
+  outline: none !important;
+}
+
+.dark input:focus, .dark textarea:focus, .dark select:focus, .dark button:focus {
+  box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.3), 0 0 15px rgba(0, 255, 0, 0.4) !important;
+}
+
+/* Signal nodes for cyberpunk design */
+.signal-node {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(0, 255, 0, 0.8);
+  animation: signal-ping 3s infinite;
+}
+
+.dark .signal-node {
+  background-color: rgba(0, 255, 0, 0.8);
+}
+
+/* Circuit boards for cyberpunk design */
+.circuit-board {
+  position: relative;
+  background-color: rgba(0, 20, 10, 0.2);
+  background-image: 
+    linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+}
+
+/* Data stream element */
+.data-stream {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.7), rgba(0, 255, 0, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: data-flow 3s linear infinite;
+}
+
+/* Improved hover effects for boxes */
+.cyber-box-hover:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+  border-color: rgba(0, 255, 0, 0.6);
+  transform: translateY(-3px);
+}

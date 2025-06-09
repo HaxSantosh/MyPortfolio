@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth antialiased;
+    cursor: none; /* Hide default cursor when using custom cursor */
+  }
+
+  body {
+    @apply font-mono text-gray-900 dark:text-hacker-primary bg-modern-light dark:bg-hacker-dark transition-colors duration-200;
+  }
+
+  .matrix-bg {
+    @apply fixed inset-0 z-0 pointer-events-none opacity-30 dark:opacity-50;
+  }
+  
+  /* Override blue focus outline with theme appropriate colors */
+  *:focus {
+    @apply outline-modern-primary dark:outline-hacker-primary;
+  }
+  
+  /* Override blue selection color */
+  ::selection {
+    @apply bg-modern-primary/30 dark:bg-hacker-primary/30 text-gray-900 dark:text-hacker-primary;
+  }
+  
+  /* Make sure all buttons have theme-appropriate colors */
+  button, 
+  [type='button'], 
+  [type='reset'], 
+  [type='submit'] {
+    @apply text-gray-900 dark:text-hacker-primary hover:text-modern-primary dark:hover:text-hacker-accent;
+  }
+  
+  /* Make links follow the theme */
+  a {
+    @apply text-modern-primary dark:text-hacker-primary hover:text-modern-secondary dark:hover:text-hacker-accent;
+  }
+  
+  /* Fix PDF viewer in dark mode */
+  iframe {
+    @apply dark:bg-black/90 dark:border dark:border-hacker-primary/30;
+    @apply dark:opacity-90;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply px-4 py-2 text-gray-700 dark:text-hacker-primary hover:text-modern-primary dark:hover:text-hacker-secondary transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply px-6 py-2 bg-modern-primary dark:bg-transparent text-white dark:text-hacker-primary 
+           border-2 border-transparent dark:border-hacker-primary rounded-md 
+           hover:bg-modern-secondary dark:hover:bg-hacker-dark dark:hover:border-hacker-secondary
+           transition-all duration-200 dark:hover:animate-glow;
+  }
+
+  .terminal-window {
+    @apply bg-black/90 border border-hacker-primary/30 rounded-lg p-6 shadow-lg;
+  }
+  
+  .content-card {
+    @apply bg-white/80 dark:bg-black/70 backdrop-blur-sm rounded-lg shadow-lg 
+           border border-gray-200 dark:border-hacker-primary 
+           dark:hover:border-hacker-accent transition-all duration-300;
+  }
+  
+  .section-container {
+    @apply bg-white/90 dark:bg-black/75 backdrop-blur-sm px-6 py-8 rounded-lg 
+           shadow-lg border-0 dark:border dark:border-hacker-primary/50;
+  }
+  
+  .terminal-card {
+    @apply bg-black/80 backdrop-blur-sm rounded-lg border border-hacker-primary/60
+           p-4 shadow-lg dark:hover:border-hacker-primary transition-all duration-300
+           dark:hover:shadow-hacker-primary/20 dark:hover:shadow-lg;
+  }
+  
+  .terminal-header {
+    @apply flex justify-between items-center border-b border-gray-200 dark:border-hacker-primary/30 
+           py-2 px-1 mb-4 text-xs font-mono;
+  }
+  
+  .terminal-title {
+    @apply font-bold text-gray-700 dark:text-hacker-primary;
+  }
+  
+  /* Input and focus states with proper colors */
+  input, textarea, select {
+    @apply bg-transparent border-2 border-gray-300 dark:border-hacker-primary/70 
+           focus:border-modern-primary dark:focus:border-hacker-accent focus:ring-0
+           text-gray-900 dark:text-hacker-primary rounded-md px-3 py-2;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-200 dark:bg-black rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-hacker-primary/50 rounded-full hover:bg-gray-500 dark:hover:bg-hacker-primary;
+  }
+  
+  /* Signal animations */
+  .signal-ping {
+    @apply animate-ping-signal;
+  }
+  
+  .cursor-trail {
+    @apply animate-trail-fade;
+  }
+}
+
+@layer utilities {
+  .glow {
+    text-shadow: 0 0 5px theme('colors.hacker.primary'), 
+                 0 0 10px theme('colors.hacker.primary'),
+                 0 0 15px theme('colors.hacker.primary');
+  }
+
+  .glow-box {
+    box-shadow: 0 0 5px theme('colors.hacker.primary'),
+                0 0 10px theme('colors.hacker.primary'),
+                0 0 15px theme('colors.hacker.primary');
+  }
+}
