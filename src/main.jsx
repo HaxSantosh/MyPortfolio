@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom'; // Changed to HashRouter for GitHub Pages
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './app/store';
 import App from './App';
+import { registerSPARouting } from './utils/spa-redirect';
+
+// Register SPA routing for GitHub Pages
+registerSPARouting();
 
 // Import styles
 import './index.css';
@@ -17,12 +21,11 @@ const router = {
   }
 };
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <HashRouter {...router}>
+ReactDOM.createRoot(document.getElementById('root')).render(  <React.StrictMode>
+    <BrowserRouter basename="/MyPortfolio" {...router}>
       <Provider store={store}>
         <App />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 );
