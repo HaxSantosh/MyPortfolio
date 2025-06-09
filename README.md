@@ -37,16 +37,16 @@ You can deploy the website to GitHub Pages using the easy deployment script:
 
 ```bash
 # Run the simple deployment script (it will prompt for your token)
-bash deploy-portfolio.sh
+bash deploy.sh
 
 # Or provide your token directly
-bash deploy-portfolio.sh YOUR_TOKEN_HERE
+bash deploy.sh YOUR_TOKEN_HERE
 ```
 
 Alternatively, you can use any of these methods:
 
 ```bash
-# Method 1: Using the secure-deploy script
+# Method 1: Using the deploy-secure npm script
 GH_TOKEN=your_token_here npm run deploy-secure
 
 # Method 2: Using the token-based approach
@@ -55,6 +55,11 @@ GH_TOKEN=your_token_here npm run deploy-token
 # Method 3: Using the standard gh-pages approach (requires git credentials)
 npm run deploy
 ```
+
+### Deployment Scripts
+The deployment scripts are kept in the `deploy/` directory which is excluded from Git for security reasons. If you're cloning this repository, you'll need to set up your own deployment scripts or request them from the repository owner.
+
+> **Note**: Deployment scripts contain sensitive operations and are not committed to the repository. This is a security best practice to avoid exposing deployment workflows.
 
 Note: Never commit your token to your repository. Always provide it via command line or environment variables.
 

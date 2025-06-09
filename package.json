@@ -3,8 +3,7 @@
   "name": "my-portfolio",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
-  "scripts": {
+  "type": "module",  "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -13,7 +12,8 @@
     "deploy": "gh-pages -d dist --dotfiles --user \"HaxSantosh <HaxSantosh@gmail.com>\" -b gh-pages -f",
     "deploy-alt": "gh-pages --dist dist --repo https://github.com/HaxSantosh/MyPortfolio.git --user \"HaxSantosh <HaxSantosh@gmail.com>\" --remove \"**/*\" --add --branch gh-pages",
     "deploy-token": "gh-pages -d dist --dotfiles --repo https://HaxSantosh:${GH_TOKEN}@github.com/HaxSantosh/MyPortfolio.git --user \"HaxSantosh <HaxSantosh@gmail.com>\" -b gh-pages -f",
-    "deploy-secure": "bash secure-deploy.sh"
+    "deploy-secure": "bash deploy/secure-deploy.sh",
+    "deploy-portfolio": "bash deploy/deploy-portfolio.sh"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
