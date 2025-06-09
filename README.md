@@ -33,16 +33,25 @@ npm run build
 ```
 
 ### Deploying to GitHub Pages
-You can deploy the website to GitHub Pages using one of these methods:
+You can deploy the website to GitHub Pages using the secure deploy script:
 
-1. **Local deployment with authentication**:
-   ```bash
-   npm run deploy-token
-   ```
+```bash
+# Set your GitHub token as an environment variable
+GH_TOKEN=your_token_here
 
-2. **Using GitHub Actions**:
-   - Just push your changes to the main/master branch
-   - GitHub Actions will automatically build and deploy
+# Run the secure deployment script
+npm run deploy-secure
+```
+
+or directly use one of the provided scripts:
+
+```bash
+# Using the token-based approach
+npm run deploy-token
+
+# Using the standard gh-pages approach (requires proper git credentials)
+npm run deploy
+```
 
 ## Linting
 To lint the project: `npm run lint`
