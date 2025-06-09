@@ -13,18 +13,61 @@ const navigation = [
   { name: 'Resume', href: '/resume', icon: FaFile },
 ];
 
-const NavbarLink = ({ item }) => {
-  const [showLabel, setShowLabel] = useState(false);
+const NavbarLink = ({ item, isMobile = false }) => {
   const location = useLocation();
   const isActive = location.pathname === item.href;
   const Icon = item.icon;
+  const [showTooltip, setShowTooltip] = useState(false);
 
+  // Mobile version (shown at bottom)
+  if (isMobile) {
+    return (
+      <NavLink
+        to={item.href}
+        className="relative flex items-center justify-center px-2"
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
+        <div className={`
+          p-2 rounded-lg transition-all duration-300
+          ${isActive 
+            ? 'text-modern-primary dark:text-hacker-primary dark:glow'
+            : 'text-gray-600 dark:text-gray-400 hover:text-modern-primary dark:hover:text-hacker-primary'
+          }
+        `}>
+          <Icon className="w-5 h-5" />
+        </div>
+        
+        {/* Mobile Tooltip (appears above icon) */}
+        <AnimatePresence>
+          {showTooltip && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="absolute bottom-full mb-2 z-50"
+            >
+              <div className="bg-white dark:bg-hacker-dark/90 px-2 py-1 rounded shadow-lg
+                          border border-gray-200 dark:border-hacker-primary/30">
+                <span className="text-xs whitespace-nowrap font-mono
+                            text-gray-900 dark:text-hacker-primary">
+                  {item.name}
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </NavLink>
+    );
+  }
+
+  // Desktop version (shown on left)
   return (
     <NavLink
       to={item.href}
-      className="relative group"
-      onMouseEnter={() => setShowLabel(true)}
-      onMouseLeave={() => setShowLabel(false)}
+      className="relative group w-full flex items-center"
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
     >
       <div className={`
         p-3 rounded-lg transition-all duration-300
@@ -35,9 +78,10 @@ const NavbarLink = ({ item }) => {
       `}>
         <Icon className="w-6 h-6" />
       </div>
-
+      
+      {/* Desktop Tooltip (appears to the right of icon) */}
       <AnimatePresence>
-        {showLabel && (
+        {showTooltip && (
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
@@ -61,76 +105,87 @@ const NavbarLink = ({ item }) => {
 export default function Navbar() {
   const darkMode = useSelector(selectDarkMode);
   const dispatch = useDispatch();
-  const [showNav, setShowNav] = useState(false);
-  let hideTimeout;
-
-  const handleMouseMove = (e) => {
-    if (e.clientX < 20) {
-      clearTimeout(hideTimeout);
-      setShowNav(true);
-    } else if (e.clientX > 80 && showNav) {
-      clearTimeout(hideTimeout);
-      hideTimeout = setTimeout(() => setShowNav(false), 800);
-    }
-  };
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  
+  // Check if the screen is mobile size on resize
   React.useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    
-    // Hide nav initially after a short delay
-    const initialTimeout = setTimeout(() => setShowNav(false), 2000);
-    
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      clearTimeout(hideTimeout);
-      clearTimeout(initialTimeout);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
     };
-  }, []);
-  return (
-    <motion.nav
-      initial={{ x: -64 }}
-      animate={{
-        x: showNav ? 0 : -60,
-        opacity: showNav ? 1 : 0.2
-      }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-      className="fixed left-0 top-0 h-screen w-16 z-50 flex flex-col items-center justify-center
-                bg-white/90 dark:bg-hacker-dark/90 backdrop-blur-md shadow-lg
-                border-r border-gray-200 dark:border-hacker-primary/30 hover:border-r-2 dark:hover:border-hacker-primary/60"
-    >
-      <div className="flex flex-col items-center space-y-6">
-        {navigation.map((item) => (
-          <NavbarLink key={item.name} item={item} />
-        ))}
-          <button
-          onClick={() => dispatch(toggleTheme())}
-          className="p-2 rounded-lg transition-all duration-200
-                    text-gray-600 dark:text-hacker-primary
-                    hover:text-modern-primary dark:hover:text-hacker-accent
-                    border border-transparent dark:hover:border-hacker-primary/70
-                    dark:hover:shadow-hacker-primary/20 dark:hover:shadow-sm"
-          aria-label="Toggle theme"
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);  return (
+    <>
+      {/* Desktop Navigation (Left Side) */}
+      {!isMobile && (
+        <nav className="fixed left-0 top-0 h-screen w-16 z-50 flex flex-col items-center justify-center
+                  bg-white/90 dark:bg-hacker-dark/90 backdrop-blur-md shadow-lg
+                  border-r border-gray-200 dark:border-hacker-primary/30 dark:border-r-2"
         >
-          <motion.div
-            initial={false}
-            animate={{ rotate: darkMode ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="flex flex-col items-center"
-          >
-            {darkMode ? (
-              <>
-                <FaMoon className="w-5 h-5" />
-                <span className="text-[8px] mt-1 font-mono">TERMINAL</span>
-              </>
-            ) : (
-              <>
-                <FaSun className="w-5 h-5" />
-                <span className="text-[8px] mt-1 font-mono">STANDARD</span>
-              </>
-            )}
-          </motion.div>
-        </button>
-      </div>
-    </motion.nav>
+          <div className="flex flex-col items-center space-y-6">
+            {navigation.map((item) => (
+              <NavbarLink key={item.name} item={item} />
+            ))}
+            <button
+              onClick={() => dispatch(toggleTheme())}
+              className="p-2 rounded-lg transition-all duration-200
+                        text-gray-600 dark:text-hacker-primary
+                        hover:text-modern-primary dark:hover:text-hacker-accent
+                        border border-transparent dark:hover:border-hacker-primary/70
+                        dark:hover:shadow-hacker-primary/20 dark:hover:shadow-sm"
+              aria-label="Toggle theme"
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: darkMode ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center"
+              >
+                {darkMode ? (
+                  <>
+                    <FaMoon className="w-5 h-5" />
+                    <span className="text-[8px] mt-1 font-mono">TERMINAL</span>
+                  </>
+                ) : (
+                  <>
+                    <FaSun className="w-5 h-5" />
+                    <span className="text-[8px] mt-1 font-mono">STANDARD</span>
+                  </>
+                )}
+              </motion.div>
+            </button>
+          </div>
+        </nav>
+      )}
+      
+      {/* Mobile Navigation (Bottom) */}
+      {isMobile && (
+        <nav className="fixed bottom-0 left-0 w-full z-50 
+                  bg-white/95 dark:bg-hacker-dark/95 backdrop-blur-md shadow-lg-up
+                  border-t border-gray-200 dark:border-hacker-primary/30 py-2"
+        >
+          <div className="flex justify-around items-center">
+            {navigation.map((item) => (
+              <NavbarLink key={item.name} item={item} isMobile={true} />
+            ))}
+            <div className="flex flex-col items-center px-2">
+              <button
+                onClick={() => dispatch(toggleTheme())}
+                className="p-2 rounded-lg transition-all duration-200
+                          text-gray-600 dark:text-hacker-primary
+                          hover:text-modern-primary dark:hover:text-hacker-accent"
+                aria-label="Toggle theme"
+              >
+                {darkMode ? <FaMoon className="w-5 h-5" /> : <FaSun className="w-5 h-5" />}
+              </button>
+              <span className="text-xs font-mono mt-1">
+                {darkMode ? 'DARK' : 'LIGHT'}
+              </span>
+            </div>
+          </div>
+        </nav>
+      )}
+    </>
   );
 }

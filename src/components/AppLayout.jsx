@@ -33,7 +33,18 @@ const AppLayout = () => {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
     localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-  }, [darkMode]);  return (
+  }, [darkMode]);  // Detect if the screen is mobile size
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+  
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
     <div className="min-h-screen w-full flex relative">
       {/* Persistent Background */}
       <Background />
@@ -44,9 +55,10 @@ const AppLayout = () => {
       {/* Side Navigation */}
       <Navbar />
       
-      {/* Main Content Area */}      <main className="flex-1 ml-16 relative">
+      {/* Main Content Area */}
+      <main className={`flex-1 relative ${!isMobile ? 'ml-16' : ''}`}>
         <div className="absolute inset-0 overflow-auto custom-scrollbar">
-          <div className="min-h-screen p-6 z-10">            <AnimatePresence mode="wait">
+          <div className={`min-h-screen z-10 ${isMobile ? 'p-2 pb-20' : 'p-6'}`}><AnimatePresence mode="wait">
               <motion.div
                 key={location.pathname}
                 initial={{ opacity: 0, y: 20 }}
