@@ -1,6 +1,6 @@
 # Santosh Kumar Yadav - Developer Portfolio
 
-This is a frontend-only developer portfolio for Santosh Kumar Yadav, built with React (using Vite), Redux Toolkit, Tailwind CSS, and Framer Motion.
+This is a frontend-only developer portfolio for Santosh Kumar Yadav, built with React (using Vite), Redux Toolkit, Tailwind CSS, and Framer Motion. The site is deployed to GitHub Pages at [haxsantosh.github.io/MyPortfolio](https://haxsantosh.github.io/MyPortfolio/).
 
 ## Tech Stack
 - **Framework/Library:** React (with Vite)
