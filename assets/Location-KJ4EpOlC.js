@@ -1,0 +1,1 @@
+import"./react-vendor-DHnLSSe8.js";import{j as r}from"./framer-motion-CBYlNctZ.js";function e(){return r.jsx("div",{className:"page-container py-5",children:r.jsx("div",{className:"mt-8",children:"In Progress"})})}export{e as default};
